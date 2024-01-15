@@ -1,0 +1,49 @@
+/* styles.css */
+body{
+    background-image: url('/static/bg_final.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+.dashboard-title {
+    font-size: 40px;
+    color: #007BFF;
+}
+
+.welcome-message {
+    font-size: 24px;
+    color: #333;
+}
+
+/* Style the Logout button */
+.btn-logout {
+    background-color: #DC3545;
+    color: white;
+}
+
+/* Style the tables */
+table {
+    width: 100%;
+}
+
+table.table-bordered th, table.table-bordered td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+}
+
+/* Add hover effect to table rows */
+table.table-bordered tr:hover {
+    background-color: #f8f9fa;
+}
+
+.main-title {
+    font-size: 36px;
+    color: #474747;
+    margin-bottom: 20px;
+}
+
+.sub-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 40px;
+}

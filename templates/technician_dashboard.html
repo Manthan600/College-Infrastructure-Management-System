@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="dashboard-title">Technician Dashboard</h1>
+        <a href="{{ url_for('logout_technician') }}" class="btn btn-logout">Logout</a>
+    </div>
+    <p class="welcome-message ">Welcome, {{ name }} ({{ username }})!</p>
+    <h2 class="section-title mb-3">Complaints Unaccepted</h2>
+    <table class="table table-bordered mb-5" >
+        <thead style="background-color: rgb(173, 173, 173);">
+            <tr>
+                <th>Token ID</th>
+                <th>Student ID</th>
+                <th>Device ID</th>
+                <th>Description</th>
+                <th>Complaint Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through and display the contents of the comp_complaints table -->
+            {% for complaint in complaints %}
+            <tr>
+                <td>{{ complaint[0] }}</td>
+                <td>{{ complaint[1] }}</td>
+                <td>{{ complaint[2] }}</td>
+                <td>{{ complaint[3] }}</td>
+                <td>{{ complaint[4] }}</td>
+                <td class="text-center">
+                    <form method="POST" action="{{ url_for('accept_complaint', token_id=complaint[0]) }}">
+                    <button type="submit" class="btn btn-success">Accept Complaint</button>
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2 class="section-title mb-3">Technician-Specific Complaints</h2>
+    <table class="table table-bordered">
+        <thead style="background-color: rgb(173, 173, 173);">
+            <tr>
+                <th>Token ID</th>
+                <th>Student ID</th>
+                <th>Device ID</th>
+                <th>Description</th>
+                <th>Complaint Date</th>
+                <th>Technician ID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for complaint in technician_complaints %}
+            <tr>
+                <td>{{ complaint[0] }}</td>
+                <td>{{ complaint[1] }}</td>
+                <td>{{ complaint[2] }}</td>
+                <td>{{ complaint[3] }}</td>
+                <td>{{ complaint[4] }}</td>
+                <td>{{ complaint[5] }}</td>
+                <td class="text-center">
+                    <form method="POST" action="{{ url_for('resolve_complaint', token_id=complaint[0]) }}">
+                        <button type="submit" class="btn btn-success">Complaint Solved</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
